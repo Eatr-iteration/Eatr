@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const config = {
-  entry: ['./client/index.js'],
+  entry: ['./Client/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -31,12 +31,13 @@ const config = {
     static: {
       directory: './dist',
     },
-    proxy: {'/': 'http://localhost:3000/'}
+    proxy: {'/': 'http://localhost:3000/'},
+    compress: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development',
-      template: 'client/index.html'
+      template: 'Client/index.html'
     })
   ],
 };

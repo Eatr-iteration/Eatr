@@ -20,9 +20,9 @@ function MainContainer() {
   const handleFormSubmission = (e) => {
     e.preventDefault();
     const form = e.target.parentNode;
-    const location = form.children[2].value;
-    const category = form.children[6].value;
-    dispatch(getRestaurantsActionCreator({ term: category, location }));
+    const searchLocation = form.children[2].value;
+    const searchTerm = form.children[6].value;
+    dispatch(getRestaurantsActionCreator({ searchTerm, searchLocation }));
     handleSceneChange(e);
   };
   const renderSwitch = () => {
