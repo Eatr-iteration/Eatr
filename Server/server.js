@@ -23,13 +23,9 @@ app.get('/style/chef.png', (req, res) => {
 
 app.use('/', express.static(path.join(__dirname, '../dist')));
 
-// Route handlers
-
-
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
 });
-
 
 
 app.get('/restaurants', apiController.getRestaurantList, (req, res) => res.status(200).send(res.locals.restaurants));
@@ -43,6 +39,13 @@ app.post('/login', dbController.verifyUser, cookieController.setLoginCookie, (re
   res.status(200).redirect('/')
 })
 
+app.post('/addfavorite', dbController.createFavorite, (req, res) => {
+  res.sendStatus(200);
+})
+
+app.post('/getfavorites', dbController.getFavorites, (req, res) => {
+  res.send(200).json(res.locals.favorites);
+});
 
 // Unknown Route Handler
 app.get('/*', (req, res) => res.status(404).send('404 No Food Found!'));

@@ -1,8 +1,8 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import * as types from '../Constants/actionTypes.js';
 
 export const getRestaurantsActionCreator = (body) => async (dispatch) => {
-  // FETCH API WITH AXIOS
   const restaurants = await axios.get('/restaurants', {
     params: body,
   });
@@ -14,23 +14,24 @@ export const getRestaurantsActionCreator = (body) => async (dispatch) => {
 
 export const addToFavActionCreator = () => async (dispatch, getState) => {
   const favorite = await getState().restaurants.restaurantList[0];
-  // FETCH API WITH AXIOS
-  // add favorite to database (not set up yet)
-  // const addFav = await axios.post(URL);
+  console.log('actions', Cookies.get('isLoggedIn'), favorite.id);
+  const addFavorite = await axios.post('/addfavorite', {
+    userId: Cookies.get('isLoggedIn'),
+    restId: favorite.id,
+  });
   dispatch({
     type: types.ADD_TO_FAVS,
-    // payload: addFav.data,
     payload: favorite,
   });
 };
 
 export const getFavsActionCreator = () => async (dispatch) => {
-  // FETCH API WITH AXIOS
-  // get favorites to database (not set up yet)
-  // const favRestaurants = await axios.post(URL);
+  const favRestaurants = await axios.post('/getfavorites', {
+    userId: Cookies.get('isLoggedIn'),
+  });
   dispatch({
     type: types.GET_FAVS,
-    payload: faveRestaurants.data,
+    payload: favRestaurants.data,
   });
 };
 

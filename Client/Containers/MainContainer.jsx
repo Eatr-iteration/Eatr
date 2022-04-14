@@ -17,14 +17,16 @@ function MainContainer() {
     else if (scene === 'favorites' && e.target.id === 'back') dispatch(setSceneActionCreator('feed'));
     else dispatch(setSceneActionCreator('feed'));
   };
+
   const handleFormSubmission = (e) => {
     e.preventDefault();
     const form = e.target.parentNode;
-    const searchLocation = form.children[2].value;
-    const searchTerm = form.children[6].value;
+    const searchLocation = form.children[1].value;
+    const searchTerm = form.children[2].value;
     dispatch(getRestaurantsActionCreator({ searchTerm, searchLocation }));
     handleSceneChange(e);
   };
+
   const renderSwitch = () => {
     switch (scene) {
       case 'feed':
@@ -41,11 +43,13 @@ function MainContainer() {
         );
     }
   };
+
   return (
-    <main>
+    <>
       <Header onClick={handleSceneChange} />
       {renderSwitch()}
-    </main>
+    </>
   );
 }
+
 export default MainContainer;

@@ -9,34 +9,17 @@ function FeedScene() {
   const dispatch = useDispatch();
 
   const handleClick = (e) => {
-    if (e.target.id === 'like') {
-      // dispatch action to add to favorites
-      dispatch(addToFavActionCreator());
-      // dispatch aciton to get next restaurant
-      dispatch(getNextActionCreator());
-    } else {
-      dispatch(getNextActionCreator());
-    }
+    if (e.target.parentNode.parentNode.id === 'like') dispatch(addToFavActionCreator());
+    dispatch(getNextActionCreator());
   };
 
   return (
     <>
-      <RestaurantCard />
-      <button
-        onClick={handleClick}
-        id="dislike"
-        type="button"
-      >
-        X
-      </button>
-
-      <button
-        onClick={handleClick}
-        id="like"
-        type="button"
-      >
-        ✓
-      </button>
+      <RestaurantCard index={null} />
+      <aside>
+      <button onClick={handleClick} id="dislike" type="button" aria-label="dislike" className="like-dislike"><p><span className="bi bi-emoji-frown" /></p></button>
+      <button onClick={handleClick} id="like" type="button" aria-label="like" className="like-dislike"><p><span className="bi bi-emoji-smile" /></p></button>
+      </aside>
     </>
   );
 }

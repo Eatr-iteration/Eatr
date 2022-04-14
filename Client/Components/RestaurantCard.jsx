@@ -14,14 +14,14 @@ function RestaurantCard({ index }) {
 
   switch (isLoading) {
     case true:
-      return (<p>loading...</p>);
+      return (<p className="loading">loading...</p>);
     default: {
       const { location } = business;
       const formattedAddress = `${location.address1} ${location.address2 ? location.address2 : ''}\n${location.city}, ${location.state} ${location.zip_code}`;
       return (
         <article className="restaurant-card">
           <h3>{business.name}</h3>
-          <img src={business.image_url} alt="main restaurant profile pic" />
+          <img className="restaurantImg" src={business.image_url} alt="main restaurant profile pic" />
           <section className="review-info">
             <p>
               Avg. Review:
@@ -43,13 +43,12 @@ function RestaurantCard({ index }) {
             Location:
             {formattedAddress}
           </section>
-          <section className="reviews">WE NEED TO GET REVIEWS!</section>
         </article>
       );
     }
   }
 }
 RestaurantCard.propTypes = {
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number,
 };
 export default RestaurantCard;
