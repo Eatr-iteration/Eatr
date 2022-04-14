@@ -1,10 +1,10 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import * as types from '../Constants/actionTypes.js';
 
-export const getRestaurantsActionCreator = body => async dispatch => {
-  // FETCH API WITH AXIOS
+export const getRestaurantsActionCreator = (body) => async (dispatch) => {
   const restaurants = await axios.get('/restaurants', {
-    params: body
+    params: body,
   });
   dispatch({
     type: types.GET_RESTAURANTS,
@@ -14,36 +14,32 @@ export const getRestaurantsActionCreator = body => async dispatch => {
 
 export const addToFavActionCreator = () => async (dispatch, getState) => {
   const favorite = await getState().restaurants.restaurantList[0];
-  // FETCH API WITH AXIOS
-  // add favorite to database (not set up yet)
-  // const addFav = await axios.post(URL);
+  console.log('actions', Cookies.get('isLoggedIn'), favorite.id);
+  const addFavorite = await axios.post('/addfavorite', {
+    userId: Cookies.get('isLoggedIn'),
+    restId: favorite.id,
+  });
   dispatch({
     type: types.ADD_TO_FAVS,
-    // payload: addFav.data,
-    payload: favorite
+    payload: favorite,
   });
 };
 
 export const getFavsActionCreator = () => async (dispatch) => {
-  // FETCH API WITH AXIOS
-  // get favorites to database (not set up yet)
-  // const favRestaurants = await axios.post(URL);
+  const favRestaurants = await axios.post('/getfavorites', {
+    userId: Cookies.get('isLoggedIn'),
+  });
   dispatch({
     type: types.GET_FAVS,
-    payload: faveRestaurants.data,
+    payload: favRestaurants.data,
   });
 };
 
-export const getNextActionCreator = () => {
-  return {
-    type: types.GET_NEXT,
-  };
-};
+export const getNextActionCreator = () => ({
+  type: types.GET_NEXT,
+});
 
-export const setSceneActionCreator = (scene) => {
-  return {
-    type: types.SET_SCENE,
-    payload: scene,
-  };
-};
-
+export const setSceneActionCreator = (scene) => ({
+  type: types.SET_SCENE,
+  payload: scene,
+});

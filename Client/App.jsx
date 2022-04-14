@@ -1,14 +1,26 @@
-import React, { component } from 'react';
+import React from 'react';
 import MainContainer from './Containers/MainContainer.jsx';
-import RestaurantCard from './Components/RestaurantCard.jsx';
+import LoginContainer from './Containers/LoginContainer.jsx';
+import Cookies from 'js-cookie'
 
-const App = () => {
+function App() {
+  const [renderContainer, setRenderContainer] = React.useState();
+
+  React.useEffect(() => {
+    if (!Cookies.get('isLoggedIn')) {
+      setRenderContainer(<LoginContainer />);
+    } else {
+      setRenderContainer(<MainContainer />);
+    }
+  }, []);
+
   return (
-    <div>
-      <MainContainer />
-      {/* <RestaurantCard /> */}
-    </div>
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
+      {renderContainer}
+    </>
+
   );
-};
+}
 
 export default App;

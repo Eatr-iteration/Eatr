@@ -1,9 +1,12 @@
+
+//FOR TESTING PURPOSES!!!
+
 // import express from 'express';
 
 'use strict';
 
 const yelp = require('yelp-fusion');
-const client = yelp.client('xKtPwI4Rj7xRNlLYekgqpwlRmgtq0dUxBeYWDsbCTQhqUnqFSRluOURoDbvvXQ3G9kLWR7c3rmmNB92Ofr8cBgpy5mk4U2WdQIKWINQFGyXWG7anfSLSenMmWEFUYnYx');
+const client = yelp.client('QYSS0KkNe-6eLa0GtGsyzQpqAq4wVsxztcu7NBXbz1rvX-LM8I1w35FjsmFZdhHZ2tGz3KJnTxu2XtNRxRuJ_K-nO51w196li1iE1W0OsJolxF7sE3R8feGc_ZJYYnYx');
 
 
 // const apiSearch = client.search({
