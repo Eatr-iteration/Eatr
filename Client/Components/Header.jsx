@@ -8,23 +8,25 @@ function Header({ onClick }) {
   switch (scene) {
     case 'feed':
       return (
-        <>
+        <section className="header">
           <button id="back" onClick={onClick} type="button">Back</button>
           <h1>Eatr</h1>
           <button id="favorites" disabled={hideFavorites} onClick={onClick} type="button">Favorites</button>
-        </>
+        </section>
       );
     case 'favorites':
       return (
-        <>
+        <section className="header">
           <button id="back" onClick={onClick} type="button">Back</button>
           <h1>Eatr</h1>
           <p>Congrats! Here are your liked options</p>
-        </>
+        </section>
       );
     default:
       return (
-        <h1>Eatr</h1>
+        <section className="title">
+          <h1>Eatr</h1>
+        </section>
       );
   }
 }
