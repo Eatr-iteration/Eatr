@@ -22,6 +22,7 @@ function LoginContainer() {
 
   return (
     <>
+      <h2>Eatr</h2>
       <form method="POST" action={action}>
         {signUp ? nameField : <> </>}
         <input name="username" type="text" placeholder="User Name" />

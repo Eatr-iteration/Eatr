@@ -1,6 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800;900&display=swap'); */
 
-
+@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
 
 * {
   margin: 0;
@@ -22,11 +22,14 @@ form {
   gap: 1rem;
   height: 100%;
 }
+h2 {
+  font-family: Italiana;
+}
 
 main {
   height: 100vh;
-  /* background-color: #ffecd1; */
-  background-image: url('/style/chef.png');
+  background-color: #ffecd1;
+  background-image: url('/style/chef2.png');
   background-size: 200px;
 }
 

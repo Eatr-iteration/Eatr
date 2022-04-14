@@ -17,8 +17,8 @@ app.get('/style/styles.css', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../Client/Style/styles.css'));
 });
 
-app.get('/style/chef.png', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../Client/Style/chef.png'));
+app.get('/style/chef2.png', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, '../Client/Style/chef2.png'));
 });
 
 app.use('/', express.static(path.join(__dirname, '../dist')));
