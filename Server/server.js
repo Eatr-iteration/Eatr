@@ -2,6 +2,8 @@ import express from 'express';
 import path, {dirname} from 'path';
 import { fileURLToPath } from 'url';
 import apiController from './controllers/apiController.js';
+import dbController from './controllers/dbController.js'
+import cookieController from './controllers/cookieController.js'
 
 // const __filename = import.meta.url;
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -11,14 +13,36 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // statically serve everything in the build folder on the route '/dist'
+app.get('/style/styles.css', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, '../Client/Style/styles.css'));
+});
+
+app.get('/style/chef.png', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, '../Client/Style/chef.png'));
+});
+
 app.use('/', express.static(path.join(__dirname, '../dist')));
 
 // Route handlers
+
+
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
+
+
 app.get('/restaurants', apiController.getRestaurantList, (req, res) => res.status(200).send(res.locals.restaurants));
+
+app.post('/signup', dbController.createUser, cookieController.setLoginCookie, (req, res) => {
+  console.log('sending status');
+  res.status(200).redirect('/')
+})
+
+app.post('/login', dbController.verifyUser, cookieController.setLoginCookie, (req, res) => {
+  res.status(200).redirect('/')
+})
+
 
 // Unknown Route Handler
 app.get('/*', (req, res) => res.status(404).send('404 No Food Found!'));

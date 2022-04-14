@@ -31,9 +31,10 @@ describe('db query unit tests', () => {
     it('writes to the db', async () => {
       await dbController.createUser(req, res, next);
       expect(res.locals.result).toBe(1);
+      expect(res.locals.userId).toBe(1);
     });
     it('creates a new user entry in the Users table', async () => {
-      // a user obj from the info it's give
+      
       const params = ['testUser'];
       const data = await db.query('SELECT * FROM users WHERE username = $1;', params);
       expect(data.rows[0].username).toBe('testUser');

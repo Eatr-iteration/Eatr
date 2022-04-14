@@ -62,6 +62,7 @@
     "bcrypt": "^5.0.1",
     "express": "^4.17.3",
     "jest-environment-jsdom": "^27.5.1",
+    "js-cookie": "^3.0.1",
     "jsdom": "^19.0.0",
     "node-fetch": "^3.2.3",
     "nodemon": "^2.0.15",

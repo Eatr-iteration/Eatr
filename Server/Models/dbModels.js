@@ -1,4 +1,6 @@
-import { Pool } from 'pg';
+import pkg from 'pg';
+
+const { Pool } = pkg;
 
 let PG_URI;
 if (process.env.TEST === 'true') {
